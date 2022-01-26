@@ -1,2 +1,2 @@
-import ao3-api
+import AO3
 import wx
