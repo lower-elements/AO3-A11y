@@ -1,0 +1,3 @@
+ao3-api
+keyring
+wxpython
