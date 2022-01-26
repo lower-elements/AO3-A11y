@@ -5,3 +5,4 @@ from libs import login
 from libs import main
 
 frame=None
+session=None
