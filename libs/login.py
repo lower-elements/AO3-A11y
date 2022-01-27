@@ -7,7 +7,7 @@ def login():
 	try:
 		if user != "":
 			password=g.keyring.get_password('AO3',user)
-			g.session = g.AO3.Session(user,password)
+			g.settings['session'] = g.AO3.Session(user,password)
 		
 		else:
 			login_dict={"user":"","password":""}
@@ -25,7 +25,10 @@ def login():
 			with open('configfiles/user.usr','w+') as f:
 				f.write(login_dict['user'])			
 			g.session = g.AO3.Session(login_dict['user'],login_dict['password'])
+			g.wx.MessageBox('You have just logged in as: '+login_dict['user'],'logged in', g.wx.OK)
+			g.settings['account']=True
 		
 	except:
 		g.wx.MessageBox('Please try again and try checking if your username and password are correct', 'Warning', g.wx.OK | g.wx.ICON_WARNING)
+		g.savestate()
 		g.frame.Close()
