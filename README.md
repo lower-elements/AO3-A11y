@@ -8,7 +8,7 @@ This project is written in Python, with WX py used as the prefered UI framework,
 On each OS, it's native UI API will be utilised, thus making everything accessible out of the box.  
 For fetching metadata and work content, reading and writing comments, and doing anything else involving connection to the AO3 website, we use [this unofficial API.](https://pypi.org/project/ao3-api/)  
 ### Features implemented so far
-####Thursday 27th January 2022
+#### Thursday 27th January 2022
 A login system which will allow you to access features of a registered user. 
 ### Features in the pipeline
 * Browse and read through your favorite fan fiction in an easy to use, clean user interface, designed to work specifically with screen readers.  
