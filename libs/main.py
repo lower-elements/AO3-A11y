@@ -31,11 +31,14 @@ class frame(g.wx.Frame):
 		self.Close()
 	
 	def On_Logout(self,e):
-		with open('config/user/usr','r+') as f:
+		with open('configfiles/user.usr','r+') as f:
 			user=f.read()
-		password = g.keyring.get_password('AO3', user)
-		g.keyring.delete_password('AO3', user, password)
+		with open('configfiles/user.usr','w+') as f:
+			f.write('')
+		g.keyring.delete_password('AO3', user)
 		g.session=None
+		g.wx.MessageBox('You have just logged out from the account: '+user,'logged out', g.wx.OK)
+		self.Close()
 
 def main():
 	g.frame=frame(None)
