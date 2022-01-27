@@ -7,7 +7,7 @@ def login():
 	try:
 		if user != "":
 			password=g.keyring.get_password('AO3',user)
-			g.settings['session'] = g.AO3.Session(user,password)
+			g.session = g.AO3.Session(user,password)
 		
 		else:
 			login_dict={"user":"","password":""}

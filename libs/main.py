@@ -55,7 +55,6 @@ class frame(g.wx.Frame):
 		g.wx.MessageBox('You have just logged out from the account: '+user,'logged out', g.wx.OK)
 		g.settings['account']=False
 		g.savestate()
-		self.Close()
 	
 	def On_Login(self,e):
 		g.login.login()

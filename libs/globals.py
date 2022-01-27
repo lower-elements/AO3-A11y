@@ -6,6 +6,7 @@ from libs import login
 from libs import main
 
 frame=None
+session=None
 settings=json.loads(open('configfiles/settings.json','r').read())
 
 def savestate():
