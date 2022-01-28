@@ -1,6 +1,6 @@
 from . import globals as g
 #the file where the bulk of the action occurs
-app=g.wx.App() #this is required to start the MainLoop which registers events which are key for making the program work. 
+app=g.wx.App() #this is required to start the MainLoop which registers events that are required to make the program work. 
 #the following are IDs for different occurences. E.G. APP_EXIT is the code given to exiting the program. 
 APP_EXIT=1
 APP_LOGOUT=2
@@ -14,8 +14,8 @@ class frame(g.wx.Frame):
 	
 	#this functions is what sets up the window
 	def setup(self):
-		toolbar=g.wx.MenuBar() #iniciates the menubar
-		filemenu=g.wx.Menu() #creates the submenu 'file'
+		toolbar=g.wx.MenuBar() #iniciates the menu bar
+		filemenu=g.wx.Menu() #creates the 'file' submenu
 		usermenu=g.wx.Menu() #makes the 'user' sub menu
 		quitoption=g.wx.MenuItem(filemenu, APP_EXIT, '&Quit') #makes the quit option. Its parent is the file menu and it returns the APP_EXIT id and has the display name. 
 		filemenu.Append(quitoption) #obviously adds the quit option to the file menu
