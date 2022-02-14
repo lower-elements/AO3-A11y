@@ -3,13 +3,23 @@ from libs import globals as g
 def load(url):
 	work = g.AO3.Work(g.AO3.utils.workid_from_url(url))
 	worktext=''
-	workstats=f'title:\t{work.title}\nAuthors:\t{work.authors}\nChapters:\t{work.nchapters}\nWords:\t{work.words}\nHits:\t{work.hits}\nKudos:\t{work.kudos}\nBookmarks:\t{work.bookmarks}\n'
-	worktags=work.tags
+	workstats=f'title: {work.title}\nAuthors: {work.authors}\nChapters: {work.nchapters}\nWords: {work.words}\nHits: {work.hits}\nKudos: {work.kudos}\nBookmarks: {work.bookmarks}\n'
+	worktags=''
+	for i in work.tags:
+		worktags.append(i+'\n')
 	workfandoms=work.fandoms
-	pnl=g.wx.Panel(g.frame)
+	book=g.wx.Panel(g.notebook)
+	g.notebook.AddPage(book, work.title)
 	sizer=g.wx.BoxSizer()
-	stats=g.wx.textCtrl(pnl,style=g.wx.TE_MULTILINE|g.wx.TE_READONLY)
+	statslabel=g.wx.StaticText(book,label='book stats')
+	stats=g.wx.TextCtrl(book,style=g.wx.TE_MULTILINE|g.wx.TE_READONLY)
 	stats.SetValue(workstats)
+	sizer.Add(statslabel,0)
 	sizer.Add(stats,0)
-	pnl.setSizerAndFit(sizer)
+	tags=g.wx.TextCtrl(book,style=g.wx.TE_MULTILINE|g.wx.TE_READONLY)
+	tagslabel=g.wx.StaticText(book,label='book tags')
+	tags.SetValue(worktags)
+	sizer.Add(tagslabel,0)
+	sizer.Add(tags,0)
+	book.SetSizerAndFit(sizer)
 	
