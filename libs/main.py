@@ -6,6 +6,7 @@ app=g.wx.App() #this is required to start the MainLoop which registers events th
 APP_EXIT=1
 APP_LOGOUT=2
 APP_LOGIN=3
+APP_LOAD=4
 
 #next we create a frame class that inherits from wxpython's frame class
 class frame(g.wx.Frame):
@@ -17,6 +18,7 @@ class frame(g.wx.Frame):
 	def setup(self):
 		toolbar=g.wx.MenuBar() #iniciates the menu bar
 		filemenu=g.wx.Menu()
+		worksmenu=g.wx.Menu()
 		usermenu=g.wx.Menu()
 		quitoption=g.wx.MenuItem(filemenu, APP_EXIT, '&Quit') #makes the quit option. Its parent is the file menu and it returns the APP_EXIT id and has the display name. 
 		filemenu.Append(quitoption)
@@ -24,13 +26,17 @@ class frame(g.wx.Frame):
 		logout=g.wx.MenuItem(usermenu, APP_LOGOUT, '&log out')
 		usermenu.Append(logout)
 		usermenu.Append(login)
+		loadurloption=g.wx.MenuItem(worksmenu, APP_LOAD, '&load a work from a url')
+		worksmenu.Append(loadurloption)
 		#next we bind a function to the codes defined at the top of the file. 
 		self.Bind(g.wx.EVT_MENU, self.On_Quit, id=APP_EXIT)
 		self.Bind(g.wx.EVT_MENU, self.On_Logout, id=APP_LOGOUT)
+		self.Bind(g.wx.EVT_MENU, self.On_URL, id=APP_LOAD)
 		self.Bind(g.wx.EVT_MENU, self.On_Login, id=APP_LOGIN)
 		#adds the menus to the menu bar itself. 
 		toolbar.Append(filemenu, '&File')
 		toolbar.Append(usermenu, '&user')
+		toolbar.Append(worksmenu, '&works')
 		self.SetMenuBar(toolbar)
 		
 		#sets title and centres the window on the screen. Then makes the window show. 
@@ -70,10 +76,11 @@ class frame(g.wx.Frame):
 		g.login.login()
 	
 	def On_URL(self,e):
-		dlg=g.wx.Message_Box('Enter the url to the archive of oyr own work which you wish to open'
-		self.pnl = g.wx.Panel(self)
-		vbox = g.wx.BoxSizer(g.wx.VERTICAL)
-
+		dlg=g.wx.TextEntryDialog(g.frame, 'Enter the url to the archive of our own work which you wish to open','load work')
+		dlg.SetValue('')
+		if dlg.ShowModal() == g.wx.ID_OK:
+			g.loadworks.load(dlg.GetValue())
+		dlg.Destroy()
 
 #the function that creates the frame class and starts the MainLoop
 def main():

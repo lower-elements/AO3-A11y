@@ -4,6 +4,7 @@ import keyring
 import wx
 from libs import login
 from libs import main
+from libs import loadworks
 
 frame=None #this is a variable available to the entire program that stores the wx.frame object which is the main window
 session=None #this is a variable available also to the entire program which stores the AO3 api session. 
