@@ -1,5 +1,6 @@
 from . import globals as g
 #the file where the bulk of the action occurs
+
 app=g.wx.App() #this is required to start the MainLoop which registers events that are required to make the program work. 
 #the following are IDs for different occurences. E.G. APP_EXIT is the code given to exiting the program. 
 APP_EXIT=1
@@ -68,6 +69,12 @@ class frame(g.wx.Frame):
 	#the functions that runs when APP_LOGIN is enacted. 
 	def On_Login(self,e):
 		g.login.login()
+	
+	def On_URL(self,e):
+		dlg=g.wx.Message_Box('Enter the url to the archive of oyr own work which you wish to open'
+		self.pnl = g.wx.Panel(self)
+		vbox = g.wx.BoxSizer(g.wx.VERTICAL)
+
 
 #the function that creates the frame class and starts the MainLoop
 def main():
