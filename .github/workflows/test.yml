@@ -1,8 +1,8 @@
 name: Test against targets
 on: [push]
 jobs:
-  Linux-x86_64:
-    runs-on: ubuntu-latest
+  Windows-AMD64:
+    runs-on: windows-latest
     strategy:
       matrix:
         python-version: ["3.9"]
