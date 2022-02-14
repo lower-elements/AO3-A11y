@@ -15,13 +15,12 @@ class frame(g.wx.Frame):
 	#this functions is what sets up the window
 	def setup(self):
 		toolbar=g.wx.MenuBar() #iniciates the menu bar
-		filemenu=g.wx.Menu() #creates the 'file' submenu
-		usermenu=g.wx.Menu() #makes the 'user' sub menu
+		filemenu=g.wx.Menu()
+		usermenu=g.wx.Menu()
 		quitoption=g.wx.MenuItem(filemenu, APP_EXIT, '&Quit') #makes the quit option. Its parent is the file menu and it returns the APP_EXIT id and has the display name. 
-		filemenu.Append(quitoption) #obviously adds the quit option to the file menu
+		filemenu.Append(quitoption)
 		login=g.wx.MenuItem(usermenu, APP_LOGIN, '&log in') #creates the log in option. 
-		logout=g.wx.MenuItem(usermenu, APP_LOGOUT, '&log out') #creates log out option
-		#adds log in and log out to user menu
+		logout=g.wx.MenuItem(usermenu, APP_LOGOUT, '&log out')
 		usermenu.Append(logout)
 		usermenu.Append(login)
 		#next we bind a function to the codes defined at the top of the file. 
@@ -34,14 +33,14 @@ class frame(g.wx.Frame):
 		self.SetMenuBar(toolbar)
 		
 		#sets title and centres the window on the screen. Then makes the window show. 
-		self.SetTitle("AO3 A11y. Development build")
+		self.SetTitle("AO3 A11y")
 		self.Centre()
 		self.Show()
 		#next we check if there is a username in user.usr. If not we ask if the user wants to log in. If not we go on without an account. 
 		with open('configfiles/user.usr','r+') as f:
 			user = f.read()
 		if user=='':
-			dlg=g.wx.MessageDialog(None, 'Would you like to log in. Logging in allows for greater abilities such as leaving kudos.','Log in?', g.wx.YES_NO | g.wx.ICON_QUESTION) #creates teh yes or no dialog. 
+			dlg=g.wx.MessageDialog(None, 'Would you like to log in. Logging in allows for greater abilities such as leaving kudos.','Log in?', g.wx.YES_NO | g.wx.ICON_QUESTION)
 			if dlg.ShowModal()==g.wx.ID_YES: 
 				g.login.login()
 			else:
