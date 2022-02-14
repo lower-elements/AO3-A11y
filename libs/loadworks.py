@@ -6,7 +6,7 @@ def load(url):
 	workstats=f'title: {work.title}\nAuthors: {work.authors}\nChapters: {work.nchapters}\nWords: {work.words}\nHits: {work.hits}\nKudos: {work.kudos}\nBookmarks: {work.bookmarks}\n'
 	worktags=''
 	for i in work.tags:
-		worktags.append(i+'\n')
+		worktags += i + '\n'
 	workfandoms=work.fandoms
 	book=g.wx.Panel(g.notebook)
 	g.notebook.AddPage(book, work.title)
@@ -16,8 +16,8 @@ def load(url):
 	stats.SetValue(workstats)
 	sizer.Add(statslabel,0)
 	sizer.Add(stats,0)
-	tags=g.wx.TextCtrl(book,style=g.wx.TE_MULTILINE|g.wx.TE_READONLY)
 	tagslabel=g.wx.StaticText(book,label='book tags')
+	tags=g.wx.TextCtrl(book,style=g.wx.TE_MULTILINE|g.wx.TE_READONLY)
 	tags.SetValue(worktags)
 	sizer.Add(tagslabel,0)
 	sizer.Add(tags,0)
