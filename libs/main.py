@@ -39,6 +39,14 @@ class frame(g.wx.Frame):
 		toolbar.Append(worksmenu, '&works')
 		self.SetMenuBar(toolbar)
 		
+		#add a panel 
+		pnl = g.wx.Panel(self)
+		#add a notebook with the tabs on top
+		notebook = g.wx.Notebook(pnl)
+		#Panel for the home tabb.
+		self.home = g.wx.Panel(notebook)
+		notebook.AddPage(self.home, 'Home')
+		
 		#sets title and centres the window on the screen. Then makes the window show. 
 		self.SetTitle("AO3 A11y")
 		self.Centre()
