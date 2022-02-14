@@ -8,8 +8,8 @@ def load(url):
 	workfandoms=work.fandoms
 	pnl=g.wx.Panel(g.frame)
 	sizer=g.wx.BoxSizer()
-	stats=g.wx.textCtrl(pnl,style=g.wx.TE_MULTILINE|g.wx.TE_READONLY,
+	stats=g.wx.textCtrl(pnl,style=g.wx.TE_MULTILINE|g.wx.TE_READONLY)
 	stats.SetValue(workstats)
-	sizer.Add(window=stats,0)
+	sizer.Add(stats,0)
 	pnl.setSizerAndFit(sizer)
-	)
+	
