@@ -62,6 +62,8 @@ class frame(g.wx.Frame):
 				g.settings['account']=False
 			
 		
+	
+	
 	#the function that runs when APP_EXIT is enacted, saves settings then closes the program. 
 	def On_Quit(self, e):
 		g.savestate()
@@ -87,7 +89,7 @@ class frame(g.wx.Frame):
 		dlg=g.wx.TextEntryDialog(g.frame, 'Enter the url to the archive of our own work which you wish to open','load work')
 		dlg.SetValue('')
 		if dlg.ShowModal() == g.wx.ID_OK:
-			g.loadworks.load(dlg.GetValue())
+			g.loadworks.work(dlg.GetValue())
 		dlg.Destroy()
 
 #the function that creates the frame class and starts the MainLoop
