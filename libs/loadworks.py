@@ -1,8 +1,8 @@
 from libs import globals as g
 
 class work():
-	def __init__(self,url):
-		self.work, self.workfandoms,self.worktags, self.workstats=self.load(url)
+	def __init__(self,URL):
+		self.work, self.workfandoms,self.worktags, self.workstats=self.load(URL)
 		self.book=g.wx.Panel(g.notebook)
 		g.notebook.AddPage(self.book, self.work.title)
 		self.sizer=g.wx.BoxSizer()
@@ -31,7 +31,7 @@ class work():
 		self.fandoms.SetValue(self.workfandoms)
 		self.sizer.Add(self.fandomslabel,0)
 		self.sizer.Add(self.fandoms,0)
-		self.ework=g.wx.CheckBox(self.book,label='Entire work')
+		self.ework=g.wx.CheckBox(self.book,label='Chapter by chapter')
 		self.ework.Bind(g.wx.EVT_CHECKBOX, self.On_Toggle)
 		self.sizer.Add(self.ework,0)
 		self.worktextlabel=g.wx.StaticText(self.book,label='worktext')
@@ -52,9 +52,9 @@ class work():
 		self.chapters.Hide()
 		self.sizer.Add(self.worktextlabel,0)
 		self.sizer.Add(self.worktext,0)
-		self.shutbook=g.wx.Button(self.book,label='shut this book')
-		self.shutbook.Bind(g.wx.EVT_BUTTON,self.On_Shut)
-		self.sizer.Add(self.shutbook,0)
+		self.Close_Work=g.wx.Button(self.book,label='Close work')
+		self.Close_Work.Bind(g.wx.EVT_BUTTON,self.On_Shut)
+		self.sizer.Add(self.Close_Work,0)
 		self.book.SetSizerAndFit(self.sizer)
 	
 	def On_Shut(self,event):
@@ -67,14 +67,13 @@ class work():
 	
 	def On_Toggle(self, event):
 		ework=event.GetEventObject()
+		ework.SetLabel('Chapter by chapter')
 		if ework.IsChecked():
-			ework.SetLabel('chapter by chapter')
 			self.chapters.Show()
 			self.text='chapter '+str(self.chapters.GetSelection()+1)+': '+self.work.chapters[self.chapters.GetSelection()].title+'\n'+self.work.chapters[self.chapters.GetSelection()].text
 			self.worktext.SetValue(self.text)
 			
 		else:
-			ework.SetLabel('entire work')
 			self.chapters.Hide()
 			self.text=''
 			for index, i in enumerate(self.work.chapters):
@@ -83,8 +82,8 @@ class work():
 		
 	
 	
-	def load(self,url):
-		work = g.AO3.Work(g.AO3.utils.workid_from_url(url))
+	def load(self,URL):
+		work = g.AO3.Work(g.AO3.utils.workid_from_url(URL))
 		workstats=f'Authors: {work.authors}\nChapters: {work.nchapters}\nWords: {work.words}\nHits: {work.hits}\nKudos: {work.kudos}\nBookmarks: {work.bookmarks}'
 		worktags=''
 		for i in work.tags:
