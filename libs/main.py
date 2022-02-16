@@ -24,10 +24,10 @@ class frame(g.wx.Frame):
 		filemenu.Append(quitoption)
 		login=g.wx.MenuItem(usermenu, APP_LOGIN, '&log in') #creates the log in option. 
 		logout=g.wx.MenuItem(usermenu, APP_LOGOUT, '&log out')
-		usermenu.Append(logout)
 		usermenu.Append(login)
-		loadurloption=g.wx.MenuItem(worksmenu, APP_LOAD, '&load a work from a url')
-		worksmenu.Append(loadurloption)
+		usermenu.Append(logout)
+		Load_URL_Option=g.wx.MenuItem(worksmenu, APP_LOAD, '&Load a work from an URL...')
+		worksmenu.Append(Load_URL_Option)
 		#next we bind a function to the codes defined at the top of the file. 
 		self.Bind(g.wx.EVT_MENU, self.On_Quit, id=APP_EXIT)
 		self.Bind(g.wx.EVT_MENU, self.On_Logout, id=APP_LOGOUT)
@@ -86,7 +86,7 @@ class frame(g.wx.Frame):
 		g.login.login()
 	
 	def On_URL(self,e):
-		dlg=g.wx.TextEntryDialog(g.frame, 'Enter the url to the archive of our own work which you wish to open','load work')
+		dlg=g.wx.TextEntryDialog(g.frame, 'Enter the URL to the AO3 work which you wish to open...','load work')
 		dlg.SetValue('')
 		if dlg.ShowModal() == g.wx.ID_OK:
 			g.loadworks.work(dlg.GetValue())
