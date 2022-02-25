@@ -5,6 +5,7 @@ class work():
         self.work, self.workfandoms,self.worktags, self.workstats=self.load(URL)
         self.book=g.wx.Panel(g.notebook)
         g.notebook.AddPage(self.book, self.work.title)
+
         self.sizer=g.wx.BoxSizer()
         self.titlelabel=g.wx.StaticText(self.book,label='title')
         self.title=g.wx.TextCtrl(self.book,style=g.wx.TE_MULTILINE|g.wx.TE_DONTWRAP|g.wx.TE_READONLY)
@@ -52,11 +53,22 @@ class work():
         self.chapters.Hide()
         self.sizer.Add(self.worktextlabel,0)
         self.sizer.Add(self.worktext,0)
+        for i in g.bookmarks:
+            if i==self.work.title:
+                bookpos=g.bookmarks[i]
+                self.worktext.SetInsertionPoint(bookpos)
+        self.bookmarkbutton=g.wx.Button(self.book,label='bookmark your book at this position so you can return to it when you next load the program. Please note that at this time you will still need to load the book through url')
+        self.bookmarkbutton.Bind(g.wx.EVT_BUTTON,self.On_Bookmark)
+        self.sizer.Add(self.bookmarkbutton,0)
         self.Close_Work=g.wx.Button(self.book,label='Close work')
         self.Close_Work.Bind(g.wx.EVT_BUTTON,self.On_Shut)
         self.sizer.Add(self.Close_Work,0)
         self.book.SetSizerAndFit(self.sizer)
     
+    def On_Bookmark(self,event):
+        pos=self.worktext.GetInsertionPoint()
+        g.bookmarks[self.work.title]=pos
+
     def On_Shut(self,event):
         g.notebook.RemovePage(g.notebook.GetSelection())
         del self
