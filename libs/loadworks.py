@@ -3,6 +3,7 @@ from libs import globals as g
 class work():
     def __init__(self,URL):
         self.work, self.workfandoms,self.worktags, self.workstats=self.load(URL)
+        self.URL=URL
         self.book=g.wx.Panel(g.notebook)
         g.notebook.AddPage(self.book, self.work.title)
 
@@ -60,11 +61,16 @@ class work():
         self.bookmarkbutton=g.wx.Button(self.book,label='bookmark your book at this position so you can return to it when you next load the program. Please note that at this time you will still need to load the book through url')
         self.bookmarkbutton.Bind(g.wx.EVT_BUTTON,self.On_Bookmark)
         self.sizer.Add(self.bookmarkbutton,0)
+        self.savework=g.wx.Button(self.book,label='save work to library')
+        self.savework.Bind(g.wx.EVT_BUTTON,self.On_Save)
+        self.sizer.Add(self.savework,0)
         self.Close_Work=g.wx.Button(self.book,label='Close work')
         self.Close_Work.Bind(g.wx.EVT_BUTTON,self.On_Shut)
         self.sizer.Add(self.Close_Work,0)
         self.book.SetSizerAndFit(self.sizer)
     
+    def On_Save(self,event):
+        g.librarysaves[self.work.title]=self.URL
     def On_Bookmark(self,event):
         pos=self.worktext.GetInsertionPoint()
         g.bookmarks[self.work.title]=pos

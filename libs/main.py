@@ -62,6 +62,8 @@ class frame(g.wx.Frame):
         self.sizer.Add(self.licenselabel,0)
         self.sizer.Add(self.licensetext)
         
+        g.l.library()
+        
         #sets title and centres the window on the screen. Then makes the window show. 
         self.SetTitle("AO3 A11y")
         self.Centre()
@@ -96,7 +98,7 @@ class frame(g.wx.Frame):
         g.settings['account']=False
         g.savestate()
     
-    #the functions that runs when APP_LOGIN is enacted. 
+    #the function that runs when APP_LOGIN is enacted. 
     def On_Login(self,e):
         g.login.login()
     
@@ -107,6 +109,11 @@ class frame(g.wx.Frame):
             g.loadworks.work(dlg.GetValue())
         dlg.Destroy()
 
+    def On_Closeup(self,event):
+        book=self.saved.GetValue()
+        link=g.librarysaves[book]
+        g.loadworks(link)
+    
 #the function that creates the frame class and starts the MainLoop
 def main():
     g.frame=frame(None)
