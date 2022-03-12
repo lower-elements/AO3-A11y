@@ -37,8 +37,8 @@ librarysaves=json.loads(open('configfiles/librarysaves.json','r').read())
 librarydownloads=json.loads(open('configfiles/librarydownloads.json','r').read())
 
 notebook=None
-librry=None
-version="V2022.02.27-Alpha"
+library=None
+version="V2022.03.12-Alpha"
 
 #this is a function which can be used to save the settings of the program by sending the settings dictionary back to the settings.json file. We're currently only using this just before closing the program but in the future we could add a separate thread that runs it periodically, like an autosave. 
 def savestate():
